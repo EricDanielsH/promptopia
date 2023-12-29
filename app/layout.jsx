@@ -18,7 +18,6 @@ function RootLayout({ children }) {
         <main className="app">
           <Nav />
           {children}
-          <Provider />
         </main>
       
       </body>
