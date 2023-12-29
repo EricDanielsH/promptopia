@@ -7,10 +7,11 @@ import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = () => {
-  const isUserLoggedIn = true;
-  const [providers, setProviders] = useState(null);
-  const [toggleDropdown, settoggleDropdown] = useState(false);
+  const isUserLoggedIn = true; // temporal value for logged in checker
+  const [providers, setProviders] = useState(null); // providers state
+  const [toggleDropdown, settoggleDropdown] = useState(false); // mobile toggle
 
+  // get the providers only when the page is first loaded
   useEffect(() => {
     const setProviders = async () => {
       const response = await getProviders();
@@ -57,6 +58,7 @@ const Nav = () => {
             </Link>
           </div>
         ) : (
+          // If user is not logged in, show Sign in button
           <>
             {providers &&
               Object.values(providers).map((provider) => (
@@ -113,7 +115,9 @@ const Nav = () => {
                     signOut();
                   }}
                   className="mt-5 w-full black_btn"
-                >Sign Out</button>
+                >
+                  Sign Out
+                </button>
               </div>
             )}
           </div>
