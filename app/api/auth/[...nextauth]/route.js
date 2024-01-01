@@ -25,18 +25,20 @@ const handler = NextAuth({
   callbacks: {
     async session({ session }) {
       // we want to get the data to keep an existing and running session
-      const sessionUser = User.findOne({
+      // This has to be awaited, if not, findOne returns a promise.
+      // This is becasue findOne is an async function
+      const sessionUser = await User.findOne({
         email: session.user.email,
       });
 
       // Check if the user was found and has an _id property
-      if (sessionUser && sessionUser._id) {
-        // Update the ID
-        session.user.id = sessionUser._id.toString();
-      } else {
-        console.error("User not found or missing _id property");
-        // You may want to log this error or handle it in some way.
-      }
+      // if (sessionUser && sessionUser._id) {
+      // Update the ID
+      session.user.id = sessionUser._id.toString();
+      // } else {
+      // console.error("User not found or missing _id property");
+      // You may want to log this error or handle it in some way.
+      // }
 
       return session;
     },
