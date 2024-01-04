@@ -2,7 +2,7 @@
 // this route handles authentication process
 // documentation: https://next-auth.js.org/getting-started/example
 
-import NextAuth from "next-auth/next";
+import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
 import { connectToDB } from "@utils/database";
