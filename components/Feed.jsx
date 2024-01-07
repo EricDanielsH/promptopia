@@ -34,7 +34,7 @@ const Feed = () => {
 
   useEffect(() => {
     fetchPosts();
-  } );
+  }, [allPosts] );
 
   return (
     <section className="feed">
